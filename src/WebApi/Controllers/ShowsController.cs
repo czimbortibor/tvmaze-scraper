@@ -7,7 +7,7 @@ using TvMazeScraper.Application.Shows.Queries.GetShows;
 namespace WebApi.Controllers
 {
     [Authorize]
-    public class TodoListsController : ApiController
+    public class ShowsController : ApiController
     {
         [HttpGet]
         public async Task<IEnumerable<ShowDto>> Get()

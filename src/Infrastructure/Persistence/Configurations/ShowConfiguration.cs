@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace TvMazeScraper.Infrastructure.Persistence.Configurations
 {
-    public class TodoItemConfiguration : IEntityTypeConfiguration<Show>
+    public class ShowConfiguration : IEntityTypeConfiguration<Show>
     {
         public void Configure(EntityTypeBuilder<Show> builder)
         {
