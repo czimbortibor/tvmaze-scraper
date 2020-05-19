@@ -40,7 +40,6 @@ namespace WebApi
                 options.SuppressModelStateInvalidFilter = true;
             });
             
-            
             services.AddSwaggerGen(x =>
             {
                 x.SwaggerDoc("v1", new OpenApiInfo
@@ -75,8 +74,6 @@ namespace WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }

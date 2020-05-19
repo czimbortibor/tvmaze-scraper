@@ -1,4 +1,5 @@
-﻿using TvMazeScraper.Application.Common.Interfaces;
+﻿using Infrastructure.Scraper;
+using TvMazeScraper.Application.Common.Interfaces;
 using TvMazeScraper.Infrastructure.Persistence;
 using TvMazeScraper.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,8 @@ namespace TvMazeScraper.Infrastructure
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             services.AddTransient<IDateTime, DateTimeService>();
+
+            services.AddHttpClient<IScraper, Scraper>();
             
             return services;
         }
