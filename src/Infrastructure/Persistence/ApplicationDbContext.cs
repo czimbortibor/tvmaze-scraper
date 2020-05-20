@@ -83,7 +83,7 @@ namespace TvMazeScraper.Infrastructure.Persistence
             base.OnModelCreating(builder);
         }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return base.SaveChangesAsync(cancellationToken);
         }

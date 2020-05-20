@@ -13,6 +13,6 @@ namespace TvMazeScraper.Application.Common.Interfaces
 
         DbSet<ShowCast> Casts { get; set; }
         
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

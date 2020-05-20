@@ -14,7 +14,7 @@ namespace TvMazeScraper.Application.Shows.Queries.GetShows
         {
             profile.CreateMap<ShowCast, CastPersonDto>()
                 .ForMember(x => x.Birthday,
-                    opt => opt.MapFrom(s => s.Person.BirthDay.ToShortDateString()))
+                    opt => opt.MapFrom(s => s.Person.BirthDay == null ? null : s.Person.BirthDay.Value.ToShortDateString()))
                 .ForMember(x => x.Name,
                     opt => opt.MapFrom(s => s.Person.FullName));
         }

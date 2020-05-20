@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -66,6 +67,12 @@ namespace TvMazeScraper.Application.Common.Models
         public string Name { get; set; }
         public Country Country { get; set; }
         public string Birthday { get; set; }
+
+        internal DateTime? BirthdayRawValue =>
+            string.IsNullOrWhiteSpace(Birthday)
+                ? (DateTime?)null
+                : DateTime.Parse(Birthday);
+        
         public string Gender { get; set; }
         public Image Image { get; set; }
     }
