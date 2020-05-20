@@ -12,7 +12,7 @@ namespace TvMazeScraper.Application.Common.Interfaces
         DbSet<Person> Persons { get; set; }
 
         DbSet<ShowCast> Casts { get; set; }
-
+        
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

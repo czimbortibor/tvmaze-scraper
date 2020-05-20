@@ -14,10 +14,12 @@ namespace TvMazeScraper.Application.Shows.Commands.ScrapeShows
     public class ScrapeShowsCommandHandler : IRequestHandler<ScrapeShowsCommand>
     {
         private readonly IScraper _scraper;
+        private readonly IApplicationDbContext _dbContext;
 
-        public ScrapeShowsCommandHandler(IScraper scraper)
+        public ScrapeShowsCommandHandler(IScraper scraper, IApplicationDbContext dbContext)
         {
             _scraper = scraper;
+            _dbContext = dbContext;
         }
 
         // proof of flow implementation
@@ -30,6 +32,7 @@ namespace TvMazeScraper.Application.Shows.Commands.ScrapeShows
                     continue;
                 }
 
+                await _dbContext.SaveChangesAsync(cancellationToken);
             }
 
             return Unit.Value;

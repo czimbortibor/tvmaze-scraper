@@ -15,14 +15,16 @@ namespace Infrastructure.Scraper
     public class Scraper : IScraper
     {
         private readonly HttpClient _httpClient;
+        private readonly IApplicationDbContext _dbContext;
 
         private const string BaseScrapingUrl = "https://api.tvmaze.com/shows";
         private const string ScrapingUrlQueryParams = "?embed=cast";
         private readonly JsonSerializerSettings _jsonSerializerSettings;
 
-        public Scraper(HttpClient httpClient)
+        public Scraper(HttpClient httpClient, IApplicationDbContext dbContext)
         {
             _httpClient = httpClient;
+            _dbContext = dbContext;
 
             _jsonSerializerSettings = new JsonSerializerSettings
             {

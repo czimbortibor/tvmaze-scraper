@@ -4,20 +4,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Data;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TvMazeScraper.Infrastructure.Persistence
 {
     public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
-        private readonly IDateTime _dateTime;
         private IDbContextTransaction _currentTransaction;
 
         public ApplicationDbContext(
-            DbContextOptions options,
-            IDateTime dateTime) : base(options)
+            DbContextOptions options) : base(options)
         {
-            _dateTime = dateTime;
         }
 
         public DbSet<Show> Shows { get; set; }
@@ -83,6 +81,11 @@ namespace TvMazeScraper.Infrastructure.Persistence
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             base.OnModelCreating(builder);
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }
