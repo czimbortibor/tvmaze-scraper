@@ -1,14 +1,25 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using TvMazeScraper.Application.Common.Interfaces;
 
 namespace TvMazeScraper.Application.Shows.Queries.GetShows
 {
     public class GetShowsQuery : IRequest<IEnumerable<ShowDto>>
     {
+        public GetShowsQuery(int page, int pageSize)
+        {
+            Page = page;
+            PageSize = pageSize;
+        }
+        
+        public int Page { get; }
+        public int PageSize { get; }
     }
 
     public class GetShowsQueryHandler : IRequestHandler<GetShowsQuery, IEnumerable<ShowDto>>
@@ -22,9 +33,16 @@ namespace TvMazeScraper.Application.Shows.Queries.GetShows
             _mapper = mapper;
         }
         
-        public Task<IEnumerable<ShowDto>> Handle(GetShowsQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<ShowDto>> Handle(GetShowsQuery request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            List<ShowDto> showDtos =
+                await _dbContext.Shows
+                    .Skip(request.Page * request.PageSize)
+                    .Take(request.PageSize)
+                    .ProjectTo<ShowDto>(_mapper.ConfigurationProvider)
+                    .ToListAsync(cancellationToken);
+
+            return showDtos;
         }
     }
 }

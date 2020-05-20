@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using TvMazeScraper.Application.Common.Mappings;
 using TvMazeScraper.Domain.Entities;
@@ -23,7 +24,7 @@ namespace TvMazeScraper.Application.Shows.Queries.GetShows
                 .ForMember(x => x.Name,
                     opt => opt.MapFrom(s => s.Title))
                 .ForMember(x => x.Cast,
-                    opt => opt.MapFrom(s => s.Cast));
+                    opt => opt.MapFrom(s => s.Cast.OrderByDescending(x => x.Person.BirthDay)));
         }
     }
 }

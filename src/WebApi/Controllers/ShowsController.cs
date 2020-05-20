@@ -10,9 +10,9 @@ namespace WebApi.Controllers
     public class ShowsController : ApiController
     {
         [HttpGet]
-        public async Task<IEnumerable<ShowDto>> Get()
+        public async Task<IEnumerable<ShowDto>> Get(int page, int pageSize)
         {
-            return await Mediator.Send(new GetShowsQuery());
+            return await Mediator.Send(new GetShowsQuery(page, pageSize));
         }
 
         [HttpPost, Route("scrapeSomeShows")]
