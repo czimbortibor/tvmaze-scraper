@@ -6,6 +6,7 @@ using TvMazeScraper.Application.Shows.Queries.GetShows;
 
 namespace WebApi.Controllers
 {
+    [Route("shows")]
     public class ShowsController : ApiController
     {
         [HttpGet]
