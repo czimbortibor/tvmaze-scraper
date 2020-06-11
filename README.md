@@ -1,4 +1,4 @@
-# tvmaze-scraper [![Build Status](https://dev.azure.com/tiborczimbor/Hobby/_apis/build/status/czimbortibor.tvmaze-scraper?branchName=master)](https://dev.azure.com/tiborczimbor/Hobby/_build/latest?definitionId=1&branchName=master)
+# tvmaze-scraper [![Build Status](https://dev.azure.com/tiborczimbor/Hobby/_apis/build/status/czimbortibor.tvmaze-scraper?branchName=master)](https://dev.azure.com/tiborczimbor/Hobby/_build/?definitionId=1)
 
 
 ## Prerequisites
